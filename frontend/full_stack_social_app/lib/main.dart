@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:full_stack_social_app/ui/home/home_screen.dart';
 import 'package:full_stack_social_app/ui/login/login_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,16 +17,15 @@ final GoRouter _router = GoRouter(
       },
       routes: <RouteBase>[
         GoRoute(
-          path: 'details',
+          path: '/homescreen', // Directly under root
           builder: (BuildContext context, GoRouterState state) {
-            return const DetailsScreen();
+            return const HomeScreen();
           },
         ),
       ],
     ),
   ],
 );
-
 
 class MyApp extends StatelessWidget {
   /// Constructs a [MyApp]
@@ -34,45 +34,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: _router,
-    );
-  }
-}
-
-
-class HomeScreen extends StatelessWidget {
-  /// Constructs a [HomeScreen]
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Home Screen')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () => context.go('/details'),
-          child: const Text('Go to the Details screen'),
-        ),
-      ),
-    );
-  }
-}
-
-/// The details screen
-class DetailsScreen extends StatelessWidget {
-  /// Constructs a [DetailsScreen]
-  const DetailsScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Details Screen')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () => context.go('/'),
-          child: const Text('Go back to the Home screen'),
-        ),
-      ),
+      routeInformationParser: _router.routeInformationParser,
+      routerDelegate: _router.routerDelegate,
+      routeInformationProvider: _router.routeInformationProvider,
     );
   }
 }
