@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -10,10 +11,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xFFF2F2F2),
+    return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
-        child: Text("Hello"),
+        child: SvgPicture.asset("assets/icons/instagram_logo.svg"),  // Ensure the asset path is correct
       ),
     );
   }
