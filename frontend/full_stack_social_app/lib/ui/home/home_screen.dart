@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:full_stack_social_app/ui/acctivity_feed/activity_feed.dart';
+import 'package:full_stack_social_app/ui/home/pages/feed_screen.dart';
+import 'package:full_stack_social_app/ui/home/pages/search_screen.dart';
+import 'package:full_stack_social_app/ui/profile_screen/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  // List of widgets to show in the body of Scaffold based on the selected tab
   static final List<Widget> _widgetOptions = <Widget>[
-    Text('Home Page'),
-    Text('Search Page'),
-    Text('Notifications Page'),
+    FeedScreen(),
+    SearchScreen(),
+    ActivityFeed(),
     Text('Messages Page'),
-    Text('Profile Page'),
+   ProfileScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -36,30 +38,32 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: SvgPicture.asset('assets/icons/home.svg'),
+            icon: SvgPicture.asset('assets/icons/home.svg', color: _selectedIndex == 0 ? Colors.blue[800] : null),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset('assets/icons/search.svg'),
+            icon: SvgPicture.asset('assets/icons/search.svg', color: _selectedIndex == 1 ? Colors.blue[800] : null),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset('assets/icons/add.svg'),
-            label: 'Notifications',
+            icon: SvgPicture.asset('assets/icons/add.svg', color: _selectedIndex == 2 ? Colors.blue[800] : null),
+            label: 'Add',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset('assets/icons/favt.svg'),
-            label: 'Messages',
+            icon: SvgPicture.asset('assets/icons/favt.svg', color: _selectedIndex == 3 ? Colors.blue[800] : null),
+            label: 'Favorites',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset('assets/icons/profile.svg'),
+            icon: SvgPicture.asset('assets/icons/profile.svg', color: _selectedIndex == 4 ? Colors.blue[800] : null),
             label: 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.blue[800], // Using a predefined dark blue shade
+        unselectedItemColor: Colors.grey, // Direct use of Colors.grey
+        iconSize: 40,
         onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed, // Fixes all items in place
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }

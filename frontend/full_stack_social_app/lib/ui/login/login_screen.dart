@@ -129,7 +129,7 @@ class SignUpPrompt extends StatelessWidget {
               decoration: TextDecoration.underline,  
             ),
             recognizer: TapGestureRecognizer()..onTap = () {
-              print('Navigate to sign up screen');
+               context.go("/signupscreen");
               
            },
           ),
